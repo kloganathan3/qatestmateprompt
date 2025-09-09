@@ -1,0 +1,408 @@
+/* TestMate Prompt Wizard - Component Specific Styles */
+
+/* Question Group Animations */
+.question-group {
+    animation: fadeInUp 0.5s ease-out;
+    transform-origin: center bottom;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Form Input Focus Effects */
+.form-input:focus {
+    animation: inputFocus 0.3s ease-out;
+}
+
+@keyframes inputFocus {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Button Loading State */
+.btn-primary.loading {
+    position: relative;
+    color: transparent;
+}
+
+.btn-primary.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top: 2px solid #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Score Animation */
+.score-value {
+    animation: scoreUpdate 0.5s ease-out;
+}
+
+@keyframes scoreUpdate {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Score Progress Animation */
+.score-progress {
+    position: relative;
+    overflow: hidden;
+}
+
+.score-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: progressShimmer 2s ease-in-out infinite;
+}
+
+@keyframes progressShimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Results Fade In */
+.results-section {
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tooltip Styles */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+}
+
+.tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #000000;
+    color: #ffffff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 1000;
+}
+
+.tooltip::before {
+    content: '';
+    position: absolute;
+    bottom: 115%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #000000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 1000;
+}
+
+.tooltip:hover::after,
+.tooltip:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Copy Success Animation */
+.copy-success {
+    animation: copySuccess 2s ease-out;
+}
+
+@keyframes copySuccess {
+    0%, 100% {
+        background-color: #ffffff;
+        color: #000000;
+    }
+    25%, 75% {
+        background-color: #28a745;
+        color: #ffffff;
+    }
+}
+
+/* Form Validation Animations */
+.form-input.invalid {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 20%, 40%, 60%, 80%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+}
+
+.form-input.valid {
+    animation: validPulse 0.6s ease-out;
+}
+
+@keyframes validPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(40, 167, 69, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+    }
+}
+
+/* Checkbox and Radio Custom Styles */
+.radio-option input[type="radio"],
+.checkbox-option input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #000000;
+    background-color: #ffffff;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+}
+
+.radio-option input[type="radio"] {
+    border-radius: 50%;
+}
+
+.checkbox-option input[type="checkbox"] {
+    border-radius: 3px;
+}
+
+.radio-option input[type="radio"]:checked {
+    background-color: #000000;
+}
+
+.radio-option input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+
+.checkbox-option input[type="checkbox"]:checked {
+    background-color: #000000;
+}
+
+.checkbox-option input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Hover Effects for Interactive Elements */
+.radio-option:hover input[type="radio"],
+.checkbox-option:hover input[type="checkbox"] {
+    border-color: #0066cc;
+    box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.1);
+}
+
+/* Focus States for Accessibility */
+.radio-option input[type="radio"]:focus,
+.checkbox-option input[type="checkbox"]:focus {
+    outline: none;
+    border-color: #0066cc;
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.2);
+}
+
+/* Device List Toggle Animation */
+.device-list-input {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+}
+
+.device-list-input.show {
+    max-height: 200px;
+    opacity: 1;
+}
+
+/* Enhanced Button States */
+.btn-primary:active,
+.btn-secondary:active {
+    transform: translateY(0);
+    transition: none;
+}
+
+/* Error Message Slide In */
+.error-message {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, margin 0.3s ease-out;
+}
+
+.error-message.show {
+    max-height: 50px;
+    margin-top: 8px;
+}
+
+/* Success Message Fade In */
+.success-message {
+    animation: successFade 0.5s ease-out;
+}
+
+@keyframes successFade {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Loading State for Form */
+.wizard-form.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.wizard-form.loading .form-input,
+.wizard-form.loading .radio-option,
+.wizard-form.loading .checkbox-option {
+    cursor: not-allowed;
+}
+
+/* Prompt Output Syntax Highlighting */
+.prompt-output .keyword {
+    color: #0066cc;
+    font-weight: bold;
+}
+
+.prompt-output .string {
+    color: #d73a49;
+}
+
+.prompt-output .number {
+    color: #005cc5;
+}
+
+.prompt-output .comment {
+    color: #6a737d;
+    font-style: italic;
+}
+
+/* Responsive Component Adjustments */
+@media (max-width: 768px) {
+    .radio-group,
+    .checkbox-group {
+        gap: 8px;
+    }
+
+    .radio-option,
+    .checkbox-option {
+        padding: 8px;
+    }
+
+    .tooltip::after {
+        font-size: 0.8rem;
+        max-width: 200px;
+        white-space: normal;
+        text-align: center;
+    }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .form-input,
+    .btn-primary,
+    .btn-secondary {
+        border-width: 3px;
+    }
+
+    .score-progress {
+        background: linear-gradient(90deg, #ff0000 0%, #ffff00 50%, #00ff00 100%);
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .question-group,
+    .results-section,
+    .score-value,
+    .form-input,
+    .btn-primary,
+    .btn-secondary {
+        animation: none;
+        transition: none;
+    }
+
+    .loading-spinner {
+        animation: none;
+        border: 4px solid #000000;
+    }
+
+    .score-progress::after {
+        animation: none;
+    }
+}

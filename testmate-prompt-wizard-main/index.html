@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TestMate Prompt Wizard</title>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q98010P7LZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-Q98010P7LZ');
+        console.log('[Analytics] Google Analytics initialized with tag ID: G-Q98010P7LZ');
+    </script>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header Section -->
+        <header class="app-header">
+            <h1 class="app-title">TestMate Prompt Wizard</h1>
+            <div class="disclaimer">
+                <p><strong>⚠️ Important:</strong> You need to reach at least <strong>Level 7</strong> to get a valuable output from this tool</p>
+                <p>Garbage (prompt) in → garbage (app) out.</p>
+                <p>If you don't give right inputs about your product, your feature under consideration, links to PRD, Figma and important details below the output prompt will not be super useful.</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Scoring Section -->
+            <div class="scoring-section">
+                <div class="score-display">
+                    <span class="score-label">Current Level:</span>
+                    <span class="score-value" id="currentScore">0</span>
+                    <div class="score-bar">
+                        <div class="score-progress" id="scoreProgress"></div>
+                    </div>
+                    <span class="score-target">Target: Level 7+</span>
+                </div>
+            </div>
+
+            <!-- Form Section -->
+            <form id="testmateForm" class="wizard-form">
+                <!-- Question 1 -->
+                <div class="question-group" data-question="1">
+                    <label class="question-label">
+                        1. What is the product you are looking to generate test cases for?
+                    </label>
+                    <select id="product" name="product" class="form-input" required>
+                        <option value="">Select a product...</option>
+                        <option value="malibu">Malibu</option>
+                        <option value="ceres">Ceres</option>
+                        <option value="hypernova">Hypernova</option>
+                        <option value="supernova">Supernova</option>
+                        <option value="florian">Florian</option>
+                        <option value="artemis">Artemis</option>
+                        <option value="ssg">SSG</option>
+                    </select>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="question-group" data-question="2">
+                    <label class="question-label">
+                        2. Please describe the product in your own words
+                    </label>
+                    <textarea id="productDescription" name="productDescription" class="form-input"
+                              placeholder="Provide a detailed description of the product..." rows="4" required></textarea>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="question-group" data-question="3">
+                    <label class="question-label">
+                        3. If you have the link to the product's PRD - provide the link here
+                    </label>
+                    <input type="url" id="productPrdLink" name="productPrdLink" class="form-input"
+                           placeholder="https://example.com/prd">
+                </div>
+
+                <!-- Question 4 -->
+                <div class="question-group" data-question="4">
+                    <label class="question-label">
+                        4. Do you need to create device only test cases, multi-device or constellation use cases?
+                        Please include the list of devices for multi-device and constellation use cases.
+                    </label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="testEnvironment" value="device-only" required>
+                            <span>Device Only</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="testEnvironment" value="multi-device" required>
+                            <span>Multi-Device</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="testEnvironment" value="constellation" required>
+                            <span>Constellation</span>
+                        </label>
+                    </div>
+                    <textarea id="deviceList" name="deviceList" class="form-input device-list-input"
+                              placeholder="List devices for multi-device or constellation setups..." rows="3"></textarea>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="question-group" data-question="5">
+                    <label class="question-label">
+                        5. Please input the roadmap task number and high level description of what this roadmap task is about.
+                    </label>
+                    <input type="text" id="roadmapTask" name="roadmapTask" class="form-input"
+                           placeholder="Task number (e.g., T123456)" required>
+                    <textarea id="roadmapDescription" name="roadmapDescription" class="form-input"
+                              placeholder="High level description of the roadmap task..." rows="3" required></textarea>
+                </div>
+
+                <!-- Question 6 -->
+                <div class="question-group" data-question="6">
+                    <label class="question-label">
+                        6. If you have a PRD - provide the PRD link.
+                    </label>
+                    <input type="url" id="prdLink" name="prdLink" class="form-input"
+                           placeholder="https://example.com/prd">
+                </div>
+
+                <!-- Question 7 -->
+                <div class="question-group" data-question="7">
+                    <label class="question-label">
+                        7. If you have an existing test strategy for this feature - provide the strategy link.
+                    </label>
+                    <input type="url" id="testStrategyLink" name="testStrategyLink" class="form-input"
+                           placeholder="https://example.com/test-strategy">
+                </div>
+
+                <!-- Question 8 -->
+                <div class="question-group" data-question="8">
+                    <label class="question-label">
+                        8. What type of test cases you need to generate?
+                    </label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="testCaseTypes" value="functional">
+                            <span>Functional Test Cases</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="testCaseTypes" value="performance">
+                            <span>Performance Test Cases</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="testCaseTypes" value="stability">
+                            <span>Stability Test Cases</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 9 -->
+                <div class="question-group" data-question="9">
+                    <label class="question-label">
+                        9. Do you only need positive workflows or you also need negative and destructive workflows as well?
+                    </label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="workflowTypes" value="positive-only" required>
+                            <span>Positive Workflows Only</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="workflowTypes" value="all-workflows" required>
+                            <span>Positive, Negative & Destructive Workflows</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 10 -->
+                <div class="question-group" data-question="10">
+                    <label class="question-label">
+                        10. If you already have existing test cases, provide the link so they can be excluded from test case generation effort from TestMate
+                    </label>
+                    <input type="url" id="existingTestCases" name="existingTestCases" class="form-input"
+                           placeholder="https://example.com/existing-tests">
+                </div>
+
+                <!-- Question 11 -->
+                <div class="question-group" data-question="11">
+                    <label class="question-label">
+                        11. Known External Services or APIs Needed
+                    </label>
+                    <textarea id="externalServices" name="externalServices" class="form-input" readonly
+                              rows="6">You can use API calls to openAI GPT 4o for any logic required in this application using the following endpoint: "https://api.wearables-ape.io/models/v1/chat/completions" instead of "https://api.openai.com/v1/chat/completions". If using images in prompts always use high details. Set max tokens to 2000. If audio transcription is needed in the logic of this app, use the following API call instructions: curl -X 'POST' 'https://api.wearables-ape.io/models/v1/audio/transcriptions' -H 'accept: application/json' -H 'Content-Type: multipart/form-data' -H 'Authorization: Bearer TOKEN' -F 'model=whisper' -F 'language=en' -F 'file=<FILE>.mp3;type=audio/mpeg' Send the file as a multipart form data, not a base64 encoded blob. Use the following API key 02c9c859-7ee8-4515-9c0f-f706094df1f8</textarea>
+                </div>
+
+                <!-- Question 12 -->
+                <div class="question-group" data-question="12">
+                    <label class="question-label">
+                        12. APE API Key: *
+                        <small>Get a key at <a href="https://wearables-ape.io/settings/api-keys" target="_blank">https://wearables-ape.io/settings/api-keys</a></small>
+                    </label>
+                    <input type="password" id="apeApiKey" name="apeApiKey" class="form-input"
+                           placeholder="Enter your APE API key" required>
+                </div>
+
+                <!-- Question 13 -->
+                <div class="question-group" data-question="13">
+                    <label class="checkbox-option">
+                        <input type="checkbox" id="useMetaCapabilities" name="useMetaCapabilities">
+                        <span>13. Use Meta-Approved OpenAI Capabilities</span>
+                    </label>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="button" id="generatePrompt" class="btn-primary" disabled>
+                        Generate TestMate Prompt
+                    </button>
+                    <button type="button" id="resetForm" class="btn-secondary">
+                        Reset Form
+                    </button>
+                </div>
+            </form>
+
+            <!-- Results Section -->
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <h2>Generated TestMate Prompt</h2>
+                <div class="results-content">
+                    <div class="prompt-output" id="promptOutput">
+                        <!-- Generated prompt will appear here -->
+                    </div>
+                    <div class="copy-actions">
+                        <button type="button" id="copyPrompt" class="btn-secondary">
+                            Copy Prompt
+                        </button>
+                        <button type="button" id="downloadPrompt" class="btn-secondary">
+                            Download as Text
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading States -->
+            <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+                <div class="loading-spinner"></div>
+                <p>Generating your TestMate prompt...</p>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>&copy; 2024 TestMate Prompt Wizard - Meta Internal Tool</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/utils.js"></script>
+    <script src="js/analytics.js"></script>
+    <script src="js/scoring.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
